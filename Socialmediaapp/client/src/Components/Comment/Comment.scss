@@ -1,0 +1,45 @@
+.comment-box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    .addcomment{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        img{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        input{
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-bottom: 1px solid lightgrey;
+            outline: none;
+        }
+    }
+}
+.comment{
+    display: flex;
+    gap: 10px;
+    img{
+        width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        span{
+            font-weight: bold;
+        }
+        p{
+            font-size: 12px;
+        }
+    }
+}

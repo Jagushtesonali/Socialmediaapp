@@ -1,0 +1,33 @@
+.story-container{
+   
+}
+.story{
+    display: flex;
+    gap: 10px;
+   
+    div{
+        width: 110px;
+        height: 140px;
+        position: relative;
+        border-radius: 10px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .addimage{
+            position: absolute;
+            top: 90px;
+            left: 10px;
+            font-size: 30px;
+            color: rgb(3, 3, 128);
+        }
+        span{
+            position: absolute;
+            top: 120px;
+            left: 10px;
+            color: white;
+        }
+    }
+}

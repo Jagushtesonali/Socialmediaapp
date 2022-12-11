@@ -1,0 +1,44 @@
+.rightcontiner{
+    width: 30%;
+    background-color: rgb(224, 224, 224);
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+   position: sticky;
+   top: calc(100% - 40px);
+    gap: 10px;
+    .suggetions{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+      
+        div{
+            display: flex;
+           justify-content: space-between;
+           align-items: center;
+           div{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            img{
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                object-fit: cover;
+
+            }
+            button{
+                border: none;
+                width: 50px;
+                height: 20px;
+                border-radius: 5px;
+                color: white;
+                font-size: 10px;
+            }
+           }
+        }
+    }
+}

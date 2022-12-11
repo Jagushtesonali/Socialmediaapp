@@ -7,7 +7,7 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
 import Register from './Pages/Registe/Register';
-import './App.css'
+import './App.scss'
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
     
     <div>
   <Navbar/>
-  <div style={{display:"flex",margin:"5px"}}>
+  <div style={{display:"flex"}}>
 
     <Leftbar/>
     <Outlet/>

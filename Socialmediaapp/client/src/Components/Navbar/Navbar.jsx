@@ -6,6 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.scss'
 function Navbar() {
   return (
@@ -17,6 +18,7 @@ function Navbar() {
 
    <DarkModeIcon/>
    <WindowIcon/>
+   <SearchIcon className='SearchIcon'/>
    <input type="text" />
    
 
@@ -25,7 +27,7 @@ function Navbar() {
    <PersonIcon/>
    <EmailIcon/>
    <NotificationsIcon/>
-   <AccountCircleIcon style={{color:"rgb(4, 69, 107)"}}/>
+   <AccountCircleIcon style={{color:"blue"}}/>
    <span>Sonali Jagushte</span>
      </div>
    </div>
