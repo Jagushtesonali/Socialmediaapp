@@ -1,13 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.scss'
 
 function Login() {
+  const initialvalues = {email:"",password:""}
+  const [formvalues,setformvalues]=useState(initialvalues) 
+  const[submit,setsubmit]=useState(false)
+  const[error,seterror]= useState({})
+
+
+
+  const handlechange =(e)=>{
+      e.preventDefault()
+      const {name,value}= e.target
+      setformvalues({...formvalues,[name]:value})
+      console.log(formvalues)
+  }
+  const handlesubmit =(e)=>{
+      e.preventDefault()
+      seterror(validate(formvalues))
+      setsubmit(true)
+  }
+  const validate = (values)=>{
+      const errors = {}
+ 
+      
+      if (!values.email) {
+          errors.email ="email is required"
+      }
+      if (!values.password) {
+          errors.password ="password is required"
+      }else if (values.password < 4) {
+          errors.password ="password is not less than 4 words"
+      }else if (values.password > 10) {
+          errors.password ="password is not excedded 10"
+      }
+ return errors
+
+
+
+  }
+
+
+
   return (
     <div className='login-container'>
-    <div className='login-main'>
+    <form className='login-main' onSubmit={handlesubmit}>
         <div className='left'>
-        <img src="https://media.istockphoto.com/id/1439824996/photo/young-multiracial-people-taking-a-selfie-with-smartphone-and-having-fun-in-the-city-outdoors.jpg?s=612x612&w=0&k=20&c=JcoL1TRKLSwrJvGQ1bE9ugF4kYJLK3GE71hPmX0ubIw=" alt="" className='image'/>
+        <img style={{borderRadius: "10px 0 0 10px"}} src="https://media.istockphoto.com/id/1439824996/photo/young-multiracial-people-taking-a-selfie-with-smartphone-and-having-fun-in-the-city-outdoors.jpg?s=612x612&w=0&k=20&c=JcoL1TRKLSwrJvGQ1bE9ugF4kYJLK3GE71hPmX0ubIw=" alt="" className='image'/>
             <div className='content'>
             <p className='heading'>Register to Social media app to chat with friends</p>
            <Link to="/register">     <button>Register</button></Link>
@@ -15,13 +55,14 @@ function Login() {
         </div>
         <div className='right'>
         <p style={{fontSize:"20px",fontWeight:"bold"}}>Login</p>
-         <input type="email" placeholder='Email' />
-        
-         <input type="password" placeholder='Password' />
-         <button className='register'>Login</button>
+         <input type="email" placeholder='Email' name='email'onChange={handlechange} />
+        <p style={{color:"red"}}>{error.email}</p>
+         <input type="password" placeholder='Password' onChange={handlechange} name='password'/>
+         <p style={{color:"red"}}>{error.password}</p>
+         <button className='register' name='password'type='submit' >Login</button>
 
         </div>
-    </div>
+    </form>
    </div>
    
    

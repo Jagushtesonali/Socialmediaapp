@@ -35,8 +35,6 @@ function Register() {
             errors.password ="password is not less than 4 words"
         }else if (values.password > 10) {
             errors.password ="password is not excedded 10"
-        }else{
-            errors.password=""
         }
    return errors
 

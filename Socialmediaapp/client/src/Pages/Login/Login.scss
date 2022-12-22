@@ -12,6 +12,7 @@
     width: 700px;
     height: 400px;
     background-color: white;
+    border-radius: 10px;
     .right{
       
         flex: 6;
@@ -19,7 +20,7 @@
         flex-direction: column;
         justify-content: center;
 
-        gap: 40px;
+        gap: 20px;
         padding: 0 10px;
         input{
             border: none;
@@ -31,7 +32,7 @@
         }
         input:focus{
           
-            border-color: blue;
+            border-bottom: 2px solid blue;
            
         }
         button{
@@ -58,6 +59,7 @@
             height: 100%;
             top: 0;
             background-color: rgba(0, 0, 0, 0.425);
+            border-radius: 10px 0 0 10px;
             display: flex;
             justify-content: center;
             align-items: center;
