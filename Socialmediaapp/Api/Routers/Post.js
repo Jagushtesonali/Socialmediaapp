@@ -1,5 +1,6 @@
 import express from 'express'
 import { createpost, deletepost, getallpost, getpost, likepost, updatepost } from '../Controllers/Post.js'
+import { verifytoken } from '../Verifytoken.js'
 
 const router = express.Router()
 

@@ -1,7 +1,8 @@
 .left-container{
    width: 20%;
+  top: 50px;
+  height: calc(100% - 50px);
   position: sticky;
-  top: calc(100% - 40px);
 
   padding: 10px 5px;
   .item{
@@ -12,5 +13,8 @@
   }
   hr{
    margin-bottom: 10px;
+  border: none;
+   height: 0.5px;
+   background-color: lightgray;
   }
 }

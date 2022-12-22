@@ -6,7 +6,7 @@ import Rightbar from './Components/Rightbar/Rightbar';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
-import Register from './Pages/Registe/Register';
+import Register from './Pages/Register/Register';
 import './App.scss'
 
 function App() {

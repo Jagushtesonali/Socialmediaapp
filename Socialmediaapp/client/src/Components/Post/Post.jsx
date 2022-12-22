@@ -7,7 +7,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import './Post.scss'
 import Comment from '../Comment/Comment';
-function Post() {
+function Post({type}) {
     const [showcomment,setshowcomment]= useState(false)
     const postdata = [
         {
@@ -37,7 +37,7 @@ function Post() {
   return (
   <>
   <div className='post-container'>
-    <div className='addpost'>
+  {type &&  <div className='addpost'>
         <div className='userdetail'>
             <img src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg" alt="" />
             <input type="text" placeholder='What is in your mind ?' />
@@ -47,9 +47,9 @@ function Post() {
           <PlaceIcon/> <span>Place</span>
           <Diversity3Icon/><span>Tag friends</span>
         </div>
-    </div>
+    </div>}
     {postdata && postdata.map((m)=>{return(<>
-        <div className='post'>
+        <div className='post' key={m._id}>
         <div className='userinfo'> 
             <img src={m.profile} alt="" />
             <div>

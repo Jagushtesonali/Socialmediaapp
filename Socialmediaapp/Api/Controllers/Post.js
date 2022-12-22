@@ -1,3 +1,4 @@
+import { createerror } from "../Createerror.js"
 import Post from "../Models/Post.js"
 
 
@@ -73,16 +74,18 @@ export const getallpost = async(req,res,next)=>{
 //like
 
 export const likepost = async(req,res,next)=>{
-    const id =await req.user.id
-    const postid = await req.params.videoid
+   
+   
     try {
       const post = await Post.findById(req.params.id)
-      if (!post.likes.includes(id)) {
-            await post.updateOne({$push:{likes:id}})
+      if (!post.likes.includes(req.body.userid)) {
+            await post.updateOne({$push:{likes:req.body.userid}})
+            return res.status(200).json("post liked")  
       } else {
-        await post.updateOne({$pull:{likes:id}})
+        await post.updateOne({$pull:{likes:req.body.userid}})
+        return   res.status(200).json("post disliked")  
       }
-        
+  
    
     
     } catch (error) {

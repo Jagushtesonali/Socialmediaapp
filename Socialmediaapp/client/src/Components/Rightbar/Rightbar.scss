@@ -4,8 +4,10 @@
     padding: 10px 10px;
     display: flex;
     flex-direction: column;
-   position: sticky;
-   top: calc(100% - 40px);
+    top: 50px;
+  height: calc(100% - 50px);
+  position: sticky;
+
     gap: 10px;
     .suggetions{
         display: flex;
