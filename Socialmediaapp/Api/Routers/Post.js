@@ -14,8 +14,8 @@ router.put("/:id",updatepost)
 //getpost
 router.get("/:id",getpost)
 //getallpost
-router.get("/",getallpost)
-router.put("/like/:id",likepost)
+router.get("/timeline/:id",getallpost)
+router.put("/like/:id",verifytoken,likepost)
 
 
 export default router

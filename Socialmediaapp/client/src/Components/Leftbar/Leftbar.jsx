@@ -14,12 +14,26 @@ import MarkunreadIcon from '@mui/icons-material/Markunread';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import GolfCourseIcon from '@mui/icons-material/GolfCourse';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 function Leftbar() {
+
+const {currentUser}= useSelector((state)=>state.user)
+
+
+
+
+
+
+
+
+
   return (
    <>
    <div className='left-container'>
-     <div className='item'>
-      <AccountCircleIcon style={{color:"blue"}}/><span>Sonali Jagushte</span>
+     <div className='item' style={{marginBottom:"30px"}}>
+     <img src={currentUser?.profile} alt="" style={{width:"25px",height:"25px",borderRadius:"50%",objectFit:"cover"}}/>
+   <Link to={`/profile/${currentUser._id}`} style={{textDecoration:"none",color:"black"}}>  <span style={{cursor:"pointer"}}>{currentUser.name}</span></Link>
      </div>
      <div className='item'>
       <GroupIcon style={{background: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(127,93,163,0.3253676470588235) 97%)"}}/><span>Friends</span>

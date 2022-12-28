@@ -54,19 +54,18 @@ export const deleteuser = async(req,res,next)=>{
 //follow user
 export const followuser = async(req,res,next)=>{
 
-if (req.params.id==req.user.id) {
-    if (req.params.id !== req.body.userid) {
+
         try {
 
-            const currentuser = await User.findById(req.body.userid)
-            const mainuser = await User.findById(req.params.id)
+            const mainuser = await User.findById(req.user.id)
+            const currentuser = await User.findById(req.params.id)
             if (!mainuser.Followedusers.includes(currentuser._id)) {
-                await mainuser.updateOne({$push:{Followedusers:req.body.userid}})
+                await mainuser.updateOne({$push:{Followedusers:currentuser._id}})
                 await currentuser.updateOne({$inc:{followers:1}})
                 return   res.status(200).json("user followed")
 
             } else {
-                await mainuser.updateOne({$pull:{Followedusers:req.body.userid}})
+                await mainuser.updateOne({$pull:{Followedusers:currentuser._id}})
                 await currentuser.updateOne({$inc:{followers:-1}})
 
                 return  res.status(200).json("user unfollowed")
@@ -76,15 +75,7 @@ if (req.params.id==req.user.id) {
         } catch (error) {
             next(error)
         }
-    } else {
-        next(createerror(500,"you cant follow yourself"))
-    }
-
-
-} else {
-    next(createerror(404,"you are not authinticated"))
-}
-
+    
 }
 //unfollow user
 //like post

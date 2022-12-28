@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+ box-sizing: border-box;
+    border: none;
+    outline: none;
+    list-style: none;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    width: 100%;
+    box-shadow: 5px 5px 5px rgb(245, 243, 243);
+    align-items: center;
+    padding: 0 40px;
+}
+.logo{
+font-weight: bold;
+color: rgb(253, 136, 27);
+font-size: 20px;
+
+}
+nav{
+    display: flex;
+    gap: 10px;
+    color: black;
+}
+nav a{
+    color: black;
+    font-weight: 550;
+}
+nav a:hover{
+    color: orange;
+}
+.icons{
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    div{
+        width: 30px;
+        height: 30px;
+        border: 2px solid lightgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px rgb(240, 238, 238);
+        
+    }
+    div:hover{
+        background-color: orange;
+        color: rgb(243, 241, 241);
+        border: 2px solid white;
+        box-shadow: 5px 5px 5px rgb(240, 238, 238),
+        -5px -5px 5px rgb(240, 238, 238)
+    }
+}
+
+.serchinput{
+    position: absolute;
+    top: 70px;
+    right: 30px;  
+    width: 200px;
+    height: 40px;
+   
+    display: none;
+    input{
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    padding-left: 10px;
+   
+   }
+ 
+}
+.activeinput{
+    position: absolute;
+    top: 70px;
+    right: 30px;  
+    width: 200px;
+    height: 40px;
+   
+    display: block;
+    box-shadow: 5px 5px 5px rgb(238, 236, 236),
+    -5px -5px 5px rgb(248, 246, 246);
+    transition: 1s linear;
+    input{
+    width: 100%;
+    height: 100%;
+   
+    padding-left: 10px;
+   
+   }
+   }
+   .productheading{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+   h1{
+    font-size: 15px;
+    font-weight: bold;
+   }
+   }
+   
+@media(max-width:991px){
+     
+
+
+}
+@media(max-width:768px){
+    .header nav{
+        position: absolute;
+        top: 70px;
+       right: -230px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 200px;
+        box-shadow: 5px 5px 5px rgb(238, 236, 236),
+        -5px -5px 5px rgb(248, 246, 246);
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        z-index: 999;
+        background-color: white;
+        
+    }
+    .header .activemenu{
+        right: 30px;
+    }
+  
+    
+}
+@media(max-width:450px){
+    .logo{
+        font-size: 15px;
+    }
+  
+
+    
+}
+.product-corosole{
+    position: relative;
+    overflow: hidden;
+    padding: 0 26px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    button{
+        height: 50px;
+        width: 50px;
+    }
+ 
+}
+.product-container{
+    width: 100%;
+   display: flex;
+   gap: 15px;
+   padding-left: 10px;
+  
+   overflow: hidden;
+   scroll-behavior: smooth;
+   
+}

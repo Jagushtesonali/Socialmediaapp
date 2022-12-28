@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import ShareIcon from '@mui/icons-material/Share';
@@ -7,39 +7,50 @@ import PlaceIcon from '@mui/icons-material/Place';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import './Post.scss'
 import Comment from '../Comment/Comment';
-function Post({type}) {
+import { useDispatch, useSelector } from 'react-redux';
+import {format} from 'timeago.js'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { postlike } from '../../Redux/Postslice';
+
+
+function Post({type,posts,post}) {
+   
+    const {currentUser}= useSelector((state)=>state=>state.user)
+    const {userspost}= useSelector((state)=>state=>state.post)
     const [showcomment,setshowcomment]= useState(false)
-    const postdata = [
-        {
-            profile:"https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg",
-            name:"Chetan Gangan",
-            desc:" Nature image ❤",
-            postimage:"https://th.bing.com/th/id/OIP.XprF7kKAac989M24xSlBVgHaE8?pid=ImgDet&w=1920&h=1280&rs=1"
+    const dispatch = useDispatch()
+    const[user ,setuser]=useState(null)
+useEffect(() => {
 
-        },
-        {
-            profile:"https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg",
-            name:"Sayali Jagushte",
-            desc:"First post on facebook by me",
-            postimage:"https://th.bing.com/th/id/R.3a9f0210ff7d1e83039ff237c81bacae?rik=asArcL6qvWfZfA&riu=http%3a%2f%2fs1.picswalls.com%2fwallpapers%2f2016%2f03%2f29%2fbeautiful-nature-high-definition_042323787_304.jpg&ehk=8tO7UxFL%2bC03x6vfc2O9EhdUCe4fl6tC7UGUdlnpdX4%3d&risl=&pid=ImgRaw&r=0"
-
-        },
-        {
-            profile:"https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg",
-            name:"Pruthvi Jagushte",
-            desc:" Friends Forever 💕",
-            postimage:"https://th.bing.com/th/id/R.e3546f86cc4fb97af71392d9581d8c19?rik=6fjo8sCC116NcA&riu=http%3a%2f%2fallhdwallpapers.com%2fwp-content%2fuploads%2f2016%2f07%2fFriends-3.jpg&ehk=bhAWr3cZdWATNoZBclE%2bwm19ix3Uhhqhu3Jw3Upkzb8%3d&risl=&pid=ImgRaw&r=0"
-
-        }
+    const fetchuser = async()=>{
+      
+        const res = await axios.get(`/api/user/${type ? posts?.userid:post?.userid}`)
+           setuser(res.data)
+    }
+    fetchuser()
 
 
-    ]
+}, [type ? posts?.userid:post?.userid])
+
+
+const handlelike = async()=>{
+
+const res = await axios.put(`/api/post/like/${type?posts._id:post._id}`)
+dispatch(postlike(currentUser?._id))
+
+}
+
+
+
+
   return (
   <>
   <div className='post-container'>
   {type &&  <div className='addpost'>
         <div className='userdetail'>
-            <img src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg" alt="" />
+        <img src={currentUser?.profile} alt="" style={{width:"25px",height:"25px",borderRadius:"50%",objectFit:"cover"}}/>
             <input type="text" placeholder='What is in your mind ?' />
         </div>
         <div className='postaddicon'>
@@ -48,19 +59,19 @@ function Post({type}) {
           <Diversity3Icon/><span>Tag friends</span>
         </div>
     </div>}
-    {postdata && postdata.map((m)=>{return(<>
-        <div className='post' key={m._id}>
+   
+        <div className='post'>
         <div className='userinfo'> 
-            <img src={m.profile} alt="" />
+            <img src={user?.profile}  alt="" />
             <div>
-                <span>{m.name}</span>
-                <small>1 minut ago</small>
+            <Link to={type ?`/profile/${posts?.userid}`:`/profile/${post?.userid}`}style={{textDecoration:"none",color:"black"}}>     <span>{user?.name}</span> </Link>
+                <small>{format(posts?.createdAt)}</small>
             </div>
         </div>
-        <p>{m.desc}</p>
-        <img src={m.postimage} alt="" className='postimg'/>
+        <p>{type ? posts?.desc : post?.desc}</p>
+        <img src={type ? posts?.imgurl : post?.imgurl} alt="" className='postimg'/>
         <div className='posticons'>
-         <FavoriteIcon/><span>23 likes</span>
+      <span style={{display:"flex",alignItems:"center",gap:"5px" ,cursor:"pointer"}} onClick={handlelike}>{type ?posts.likes.includes(currentUser?._id)?<FavoriteIcon style={{color:"red"}}/>:<FavoriteBorderIcon style={{color:"red"}}/>:post.likes.includes(currentUser?._id)?<FavoriteIcon style={{color:"red"}}/>:<FavoriteBorderIcon style={{color:"red"}}/>}<span>{type ? posts?.likes.length : post?.likes.length}</span></span>   
          <InsertCommentIcon/> <span style={{cursor:"pointer"}} onClick={()=>{setshowcomment(!showcomment)}}>comments</span>
          <ShareIcon/><span>Share</span>
         </div>
@@ -68,7 +79,7 @@ function Post({type}) {
     </div>
     
     
-    </>)})}
+  
   </div>
   
   </>

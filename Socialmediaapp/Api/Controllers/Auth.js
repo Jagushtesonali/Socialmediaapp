@@ -38,7 +38,7 @@ export const login = async(req,res,next)=>{
       }).status(200).json(others)
    } catch (error) {
 
-      next(error)
+next(error)
    }
 
 

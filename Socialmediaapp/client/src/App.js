@@ -8,8 +8,12 @@ import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
 import Register from './Pages/Register/Register';
 import './App.scss'
+import { useSelector } from 'react-redux';
+import Demo from './Pages/Demo/Demo';
 
 function App() {
+
+  const {currentUser} = useSelector((state)=>state.user)
 
   const Loayout = ()=>{
 
@@ -51,6 +55,10 @@ const router = createBrowserRouter([
   {
     path:"/register",
     element:<Register/>
+  },
+  {
+    path:"/demo",
+    element:<Demo/>
   }
   
 ])

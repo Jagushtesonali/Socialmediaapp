@@ -1,7 +1,12 @@
 import React from 'react'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Stories.scss'
+import { useSelector } from 'react-redux';
 function Stories() {
+
+const {currentUser} = useSelector((state)=>state.user)
+
+
    
 const data = [
     {
@@ -36,9 +41,9 @@ const data = [
   <div className='story-container'>
   <div className='story'>
     <div className='addstory'>
-      <img src="https://wallpapercave.com/wp/wp2004894.jpg" alt="" />
+      <img src={currentUser?.profile} alt="" />
       <AddCircleIcon className='addimage'/>
-      <span>Sonali jagushte</span>
+      <span>{currentUser.name}</span>
     </div>
   {data && data.map((m)=>{return(<>
     <div className='addstory'>

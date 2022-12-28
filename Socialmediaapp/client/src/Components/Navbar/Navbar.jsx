@@ -8,12 +8,22 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.scss'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 function Navbar() {
+
+const {currentUser }= useSelector((state)=>state.user)
+console.log(currentUser)
+
+
+
+
   return (
+
    <>
    <div className='navbar'>
      <div className='left'>
-    <span>  SocialmediaApp</span>
+     <Link to="/" style={{textDecoration:"none",color:"black"}}>  <span>  SocialmediaApp</span></Link>
    <HomeIcon/>
 
    <DarkModeIcon/>
@@ -27,8 +37,8 @@ function Navbar() {
    <PersonIcon/>
    <EmailIcon/>
    <NotificationsIcon/>
-   <AccountCircleIcon style={{color:"blue"}}/>
-   <span>Sonali Jagushte</span>
+  <img src={currentUser?.profile} alt="" style={{width:"25px",height:"25px",borderRadius:"50%",objectFit:"cover"}}/>
+   <span>{currentUser.name}</span>
      </div>
    </div>
    
